@@ -14,6 +14,7 @@ async function checkWeather(city){
         let data = await response.json();
 
     document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".country").innerHTML = data.sys.country;
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
     document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
     document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
@@ -44,4 +45,14 @@ async function checkWeather(city){
 
 searchBtn.addEventListener("click", ()=>{
     checkWeather(searchBox.value);
-})    
+    
+})  
+
+const input = document.getElementById("city");
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("myBtn").click();
+  }
+});
